@@ -12,9 +12,7 @@
 #   Igor Sfiligoi (Dec 11th 2006)
 #
 
-import traceback
 import json
-
 import os
 import time
 import copy

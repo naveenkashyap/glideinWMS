@@ -11,9 +11,7 @@
 # Author:
 #   Igor Sfiligoi (May 23rd 2007)
 #
-import traceback
 import json
-
 import copy
 import time
 import string
