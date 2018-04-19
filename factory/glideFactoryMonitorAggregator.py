@@ -47,9 +47,6 @@ class MonitorAggregatorConfig:
         self.logsummary_relname="log_summary.xml"
         self.jobsummary_relname="job_summary.pkl"
         self.completed_data_relname="completed_data.json"
-        self.completed_relname="Log_Completed.json"
-        self.completed_stats_relname="Log_Completed_Stats.json"
-        self.completed_wastetime_relname="Log_Completed_WasteTime.json"
 
     def config_factory(self,monitor_dir,entries, log):
         self.monitor_dir=monitor_dir

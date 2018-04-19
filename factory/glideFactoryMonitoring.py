@@ -176,6 +176,7 @@ class MonitoringConfig:
 	time: typically self.updated
 	val_dict: dictionary object to be dumped to file
         """
+
         fname = os.path.join(self.monitor_dir, relative_fname + ".json")
 
 	try:
@@ -1137,7 +1138,7 @@ class condorLogSummary:
             except IOError as e:
                 self.log.info("Could not find files to aggregate in frontend %s" % fe_dir)
                 self.log.info(str(e))
-		return 
+		continue
 
             completed_data = json.load(completed_fp)
             completed_stats_data = json.load(completed_stats_fp)
