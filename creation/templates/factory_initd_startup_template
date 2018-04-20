@@ -77,6 +77,7 @@ if [ "$RPM_INSTALL" = "True" ]; then
     . /etc/rc.d/init.d/functions
     # RPM installation (defaults and binaries)
     LOG_FILE_STARTUP=/var/log/gwms-factory/server/factory/startup.log
+    MONITOR_PID_FILE=/usr/lib/python2.6/site-packages/glideinwms/factory/jsonMonitoring/PID.txt
     DEFAULT_WRITEBACK=no
     BIN_DIR=/usr/sbin/
     CREATION_DIR=
@@ -92,6 +93,7 @@ if [ "$RPM_INSTALL" = "True" ]; then
 else
     # TAR installation  (defaults and binaries)
     LOG_FILE_STARTUP=/dev/null
+    MONITOR_PID_FILE=/dev/null
     DEFAULT_WRITEBACK=yes
     BIN_DIR="$glideinWMS_dir/factory/"
     CREATION_DIR="$glideinWMS_dir/creation/"
@@ -235,6 +237,14 @@ help_usage() {
     fi
 }
 
+start_monitor() {
+    python /usr/lib/python2.6/site-packages/glideinwms/factory/jsonMonitoring/factory_monitor_daemon.py & echo $! > $MONITOR_PID_FILE
+}
+
+stop_monitor() {
+    kill -9 `cat $MONITOR_PID_FILE`
+}
+
 start() {
     check_installed
     pushd $factory_dir 1>/dev/null
@@ -268,6 +278,9 @@ start() {
         fi
         sleep 1
     done
+    
+    start_monitor
+
     "$FACTORY_CHECK" "$factory_dir"  2>/dev/null 1>&2 </dev/null && success || failure
     RETVAL=$?
     popd 1>/dev/null
@@ -312,6 +325,8 @@ stop() {
         sleep 1
     done
     
+    stop_monitor
+
     "$FACTORY_CHECK" "$factory_dir"  2>/dev/null 1>&2 </dev/null && failure || success
     RETVAL=$?
     echo
