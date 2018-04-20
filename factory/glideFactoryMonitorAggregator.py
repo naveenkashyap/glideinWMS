@@ -802,9 +802,6 @@ def aggregateRRDStats(log=logSupport.log):
         if missing_client_data:
             log.debug("aggregate_data, missing client data from file %s" % rrd_site(rrd))
 
-
-        # write an aggregate XML file
-
         # data from indivdual entries
         entry_str = tab + "<entries>\n"
         for entry in stats_entries:

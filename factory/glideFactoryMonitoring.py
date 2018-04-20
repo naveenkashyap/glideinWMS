@@ -183,14 +183,18 @@ class MonitoringConfig:
         	f = open(fname, 'w')
         	self.log.info("Writing %s to %s" % (relative_fname, str(fname)))
 	except IOError as e:
-		self.log.err("unable to open file %s: %s" % (str(fname), str(e)))
+		self.log.err("unable to open file %s in write_completed_json: %s" % (str(fname), str(e)))
 		return
 
         data = {}
         data["time"] = time
         data["stats"] = val_dict
-        f.write(json.dumps(data, indent=4))
-        f.close()
+
+	try:
+        	f.write(json.dumps(data, indent=4))
+        	f.close()
+	except IOError as e:
+		self.log.err("unable to write to file %s in write_completed_json: %s" % (str(fname), str(e)))
 
         return
 
