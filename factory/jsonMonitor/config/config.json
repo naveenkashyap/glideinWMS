@@ -1,0 +1,10 @@
+{
+	"factory_name": "",
+	"password": "",
+	"username": "",
+	"database_name": "",
+	"database_URL": "",
+	"measurement_name": "",
+	"monitor_dir": "/var/lib/gwms-factory/web-area/monitor/",
+	"logfile_loc": "/var/log/gwms-factory/server/factory/factory_monitor.log"
+}
