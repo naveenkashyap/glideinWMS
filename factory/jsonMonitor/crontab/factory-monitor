@@ -1,3 +1,0 @@
-* * * * * root python /usr/lib/python2.6/site-packages/glideinwms/factory/jsonMonitoring/monitor.py & >/dev/null 2>&1
-* * * * * root (sleep 30; python /usr/lib/python2.6/site-packages/glideinwms/factory/jsonMonitoring/monitor.py & >/dev/null 2>&1)
-
